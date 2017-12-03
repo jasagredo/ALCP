@@ -5,11 +5,11 @@ Algoritmos en Maple para Álgebra Computacional UCM
 
 - [x] Algoritmo para calcular el teorema chino del resto (i.e. calcular el inverso) 
 
-- [ ] Mcd en un D.F.U.
+- [x] Mcd en un D.F.U.
 
-- [ ] Inverso de un elemento en un cuerpo finito. 	
+- [x] Inverso de un elemento en un cuerpo finito. 	
 
-- [ ] Test de irreducibilidad de un poliomio en Fq[x]
+- [x] Test de irreducibilidad de un poliomio en Fq[x]
 
 - [ ] Logaritmo discreto en cuerpos Fq[x]/(f(x))
 
