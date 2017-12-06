@@ -1,11 +1,11 @@
 INV := proc(f::polynom, p::integer, k::integer)
 	local inv;
-	Gcdex(f,Randprime(k,x) mod p, x, 'inv') mod p;
+	Gcdex(f,Randprime(k,r) mod p, r, 'inv') mod p;
 	return inv;
 end proc:
 
-p := 5: k := 3: minpol := r^3+r+1:
-alias(x=RootOf(minpol));
-f := 4*x^2+ 3;
+p := 5: k := 3: minpol := x^3+x+1:
+alias(r=RootOf(minpol));
+f := 4*r^2+ 3;
 inv := INV(f,p,k);
 Expand(f*inv) mod p;

@@ -13,9 +13,9 @@ Algoritmos en Maple para Álgebra Computacional UCM
 
 - [ ] Logaritmo discreto en cuerpos Fq[x]/(f(x))
 
-- [ ] Algoritmo de factorización de un polinomio en cuerpo finito parte 1, 2 y 3.
+- [x] Algoritmo de factorización de un polinomio en cuerpo finito parte 1, 2 y 3.
 
-- [ ] Algoritmo de factorizacion de Berlekamp en cuerpos finitos 
+- [x] Algoritmo de factorizacion de Berlekamp en cuerpos finitos 
 
 - [ ] Algoritmos de factorizacion en Z[x]
 

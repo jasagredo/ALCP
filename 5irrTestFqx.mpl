@@ -3,8 +3,10 @@ irrtest := proc(f::polynom, q::integer)
 
 	p := NumberTheory[PrimeFactors](q)[1];
 	n := degree(f);
-	factores := NumberTheory[PrimeFactors](n);
-	a := Rem(x^(q^n)-x, f, x) mod p;
+    factores := NumberTheory[PrimeFactors](n);
+    #a := repsqua(x, q^n, p);
+    a := Powmod(x, q^n, f, x) mod p;
+    a := Rem(a-x, f, x) mod p;
 	if a <> 0 then
 		return `reducible`
 	end if;
@@ -24,6 +26,6 @@ minpol := Randprime(k, x) mod p;
 alias(r=RootOf(minpol));
 f := Randpoly(4, x, r) mod p;
 g := Factor(f) mod p;
-l := r^2+r+x;
-Irreduc(f) mod p;
-irrtest(f, 16);
+l := (x+1)^2;
+Irreduc(l) mod p;
+irrtest(l, 16);
