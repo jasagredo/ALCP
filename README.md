@@ -19,4 +19,4 @@ Algoritmos en Maple para Álgebra Computacional UCM
 
 - [ ] Algoritmos de factorizacion en Z[x]
 
-- [ ] Algoritmo de primalidad de AKS
+- [x] Algoritmo de primalidad de AKS
