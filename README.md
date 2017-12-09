@@ -11,12 +11,12 @@ Algoritmos en Maple para Álgebra Computacional UCM
 
 - [x] Test de irreducibilidad de un poliomio en Fq[x]
 
-- [ ] Logaritmo discreto en cuerpos Fq[x]/(f(x))
+- [x] Logaritmo discreto en cuerpos Fq[x]/(f(x))
 
 - [x] Algoritmo de factorización de un polinomio en cuerpo finito parte 1, 2 y 3.
 
 - [x] Algoritmo de factorizacion de Berlekamp en cuerpos finitos 
 
-- [ ] Algoritmos de factorizacion en Z[x]
+- [x] Algoritmos de factorizacion en Z[x]
 
 - [x] Algoritmo de primalidad de AKS
