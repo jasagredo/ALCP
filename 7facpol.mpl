@@ -1,5 +1,5 @@
 eds := proc(f::polynom, p::integer, k::integer, d::integer)
-    local a, g1, b, g2;
+local a, g1, b, g2;
     a := Randpoly(rand(degree(f))(), x) mod p;
     if degree(a) < 1 then
         return -1
@@ -20,24 +20,24 @@ eds := proc(f::polynom, p::integer, k::integer, d::integer)
 end proc:
 
 edf := proc(f::polynom, p::integer, k::integer, d::integer)
-    local n, g;
+local n, g;
     n := degree(f);
     if n <= d then
-        return [f];
+        return [f]
     end if;
     do
         g := eds(f, p, k, d);
         if g <> -1 then
-            break;
+            break
         end if;
     end do;
 
-    return [op(edf(g, p, k, d)), op(edf(Quo(f,g, x) mod p, p, k, d))];
+    return [op(edf(g, p, k, d)), op(edf(Quo(f,g, x) mod p, p, k, d))]
 end proc:
 
 
 facpol := proc(f::polynom, p::integer, k::integer) #p=2??
-    local h, v, i, U, g, facg, j, e;
+local h, v, i, U, g, facg, j, e;
     #1
     h := x;
     v := f/lcoeff(f);
@@ -59,16 +59,16 @@ facpol := proc(f::polynom, p::integer, k::integer) #p=2??
                 e := 0;
                 while Rem(v, facg[j], x) mod p = 0 do
                     v := Quo(v,facg[j], x) mod p;
-                    e := e + 1;
+                    e := e + 1
                 end do;
-                U := [op(U), [facg[j],e]];
+                U := [op(U), [facg[j],e]]
             end do;
         end if;
         if v = 1 then
-            break;
+            break
         end if;
     end do;
-    return U;
+    return U
 end proc:
 
 pa := 5;

@@ -9,7 +9,7 @@ EUCLIDES := overload([
             while r1 <> 0 do
                 r2 := irem(r0, r1) mod p;
                 r0 := r1;
-                r1 := r2;
+                r1 := r2
             end do;
             return r0 mod p
         end if;
@@ -50,7 +50,7 @@ EUCLIDES := overload([
             if nargs = 2 then
                 r2 := rem(r0, r1, x)
             else
-                r2 := Rem(r0, r1, x) mod p;
+                r2 := Rem(r0, r1, x) mod p
             end if;
             r0:=r1;
             r1 := r2
@@ -58,7 +58,6 @@ EUCLIDES := overload([
         if nargs = 2 then
             return r0 / lcoeff(r0)
         end if;
-
         return r0
     end proc
                      ]):

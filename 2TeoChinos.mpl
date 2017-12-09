@@ -94,7 +94,7 @@ RESTOSCHINO := overload([
         end if;
         nt := mul(n[i], i=1..nops(n));
         if nargs = 3 then
-            nt := Expand(nt) mod p;
+            nt := Expand(nt) mod p
         end if;
         res := 0;
         for i from 1 to nops(n) do

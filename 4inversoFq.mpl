@@ -1,7 +1,7 @@
 INV := proc(f::polynom, p::integer, k::integer)
-	local inv;
-	Gcdex(f,Randprime(k,r) mod p, r, 'inv') mod p;
-	return inv;
+local inv;
+    Gcdex(f,Randprime(k,r) mod p, r, 'inv') mod p;
+    return inv
 end proc:
 
 p := 5: k := 3: minpol := x^3+x+1:

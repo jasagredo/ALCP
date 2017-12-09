@@ -1,23 +1,21 @@
 irrtest := proc(f::polynom, q::integer)
-	local p, n, rep, a, factores, b, i;
+local p, n, rep, a, factores, b, i;
 
-	p := NumberTheory[PrimeFactors](q)[1];
-	n := degree(f);
+    p := NumberTheory[PrimeFactors](q)[1];
+    n := degree(f);
     factores := NumberTheory[PrimeFactors](n);
-    #a := repsqua(x, q^n, p);
     a := Powmod(x, q^n, f, x) mod p;
     a := Rem(a-x, f, x) mod p;
-	if a <> 0 then
-		return `reducible`
-	end if;
+    if a <> 0 then
+        return `reducible`
+    end if;
 
-	for i to numelems(factores) do
-		#b := Powmod(x, q^(n/factores[i]),f , x) mod p;
-		if Gcd(x^(q^(n/factores[i]))-x,f) mod p <> 1 then
-			return `reducible`
-		end if;
-	end do;
-	return `irreducible`
+    for i to numelems(factores) do
+        if Gcd(x^(q^(n/factores[i]))-x,f) mod p <> 1 then
+            return `reducible`
+        end if;
+    end do;
+    return `irreducible`
 end proc:
 
 p := 2;

@@ -1,24 +1,24 @@
 MCDDFU := proc(a::polynom, b::polynom, p::integer)
-	local r, n, i, ar, an;
-	if nargs = 2 then
-		r := [a,b]
-	elif nargs = 2 then
-		r := [a mod p, b mod p]
-	end if;
-	n := map(t->degree(t),r);
-	i := 2;
-	while r[i] <> 0 do
-		if nargs = 2 then
-			ar := primpart(rem(lcoeff(r[i], x)^(n[i-1]-n[i]+1)*r[i-1], r[i], x), x)
-		else
-			ar := Primpart(Rem(lcoeff(r[i], x)^(n[i-1]-n[i]+1)*r[i-1] mod p, r[i], x) mod p, x) mod p
-		end if;
-		r := [op(r), ar];
-		an := degree(r[i+1]);
-		n := [op(n), an];
-		i:= i+1
-	end do;
-	return r[i-1]
+local r, n, i, ar, an;
+    if nargs = 2 then
+        r := [a,b]
+    elif nargs = 2 then
+        r := [a mod p, b mod p]
+    end if;
+    n := map(t->degree(t),r);
+    i := 2;
+    while r[i] <> 0 do
+        if nargs = 2 then
+            ar := primpart(rem(lcoeff(r[i], x)^(n[i-1]-n[i]+1)*r[i-1], r[i], x), x)
+        else
+            ar := Primpart(Rem(lcoeff(r[i], x)^(n[i-1]-n[i]+1)*r[i-1] mod p, r[i], x) mod p, x) mod p
+        end if;
+        r := [op(r), ar];
+        an := degree(r[i+1]);
+        n := [op(n), an];
+        i:= i+1
+    end do;
+    return r[i-1]
 end proc:
 
 a := x^3 + 2*x^2 + x + 2;
