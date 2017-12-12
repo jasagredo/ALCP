@@ -1,5 +1,5 @@
 babystep := proc(a, b, p::posint)
-local n, m, alphaA, i, inv, beta, idx2, idx, claseA, claseB;
+local n, m, alphaA, i, inv, beta, idx2, idx, claseA, claseB, f;
     if nargs = 4 then
         f := args[4];
         n := p^degree(f)
@@ -13,7 +13,7 @@ local n, m, alphaA, i, inv, beta, idx2, idx, claseA, claseB;
     alphaA := table();
     alphaA[0] := 1;
     for i from 1 to m-1 do
-        alphaA[i] := alphaA[i-1]*(claseA^(m) mod p) mod p
+        alphaA[i] := Expand(alphaA[i-1]*(Expand(claseA^(m)) mod p)) mod p
     end do;
     Gcdex(claseA, f, x, 'inv') mod p;
     beta := claseB;
@@ -22,7 +22,10 @@ local n, m, alphaA, i, inv, beta, idx2, idx, claseA, claseB;
         if member(beta, alphaA, idx) then
             break
         end if;
-        beta := Rem(beta*inv, f, x) mod p;
+        beta := Rem(Expand(beta*inv) mod p, f, x) mod p;
+	if beta = claseB then
+		return "failure"
+   	end if;
         idx2 := idx2+1
     end do;
 
@@ -32,3 +35,11 @@ end proc:
 7^6 mod 37;
 
 babystep(7, %, 37);
+
+minpol := x^4+x+1;
+
+alias(alpha=RootOf(minpol));
+
+Expand(alpha^5) mod 2;
+
+babystep(alpha, %, 2, minpol);
