@@ -2,7 +2,7 @@ MCDDFU := proc(a::polynom, b::polynom, p::integer)
 local r, n, i, ar, an;
     if nargs = 2 then
         r := [a,b]
-    elif nargs = 2 then
+    else
         r := [a mod p, b mod p]
     end if;
     n := map(t->degree(t),r);

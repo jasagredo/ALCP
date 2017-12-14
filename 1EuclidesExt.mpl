@@ -18,10 +18,10 @@ EUCLIDESEXT := overload([
         end if;
         r0, r1, s0, s1, t0, t1 := a mod p, b mod p, 1, 0, 0, 1;
         while r1 <> 0 do
-            q := iquo(r0, r1) mod p;
-            r2 := irem(r0, r1) mod p;
-            s2 := s0 - s1*q;
-            t2 := t0 - t1*q;
+            q := Quo(r0, r1) mod p;
+            r2 := Rem(r0, r1) mod p;
+            s2 := s0 - (s1*q mod p) mod p;
+            t2 := t0 - (t1*q mod p) mod p;
             r0, s0, t0 := r1, s1, t1;
             r1, s1, t1 := r2, s2, t2
         end do;
