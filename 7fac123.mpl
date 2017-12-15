@@ -51,42 +51,35 @@ end proc:
 
 ddf(x^4+3*x^3+4*x^2+3, 5, 4);
 
-eds := proc(f::polynom, p::integer, k::integer, d::integer)
-local a, g1, b, g2;
-    a := Randpoly(rand(degree(f))(), x) mod p;
-    if degree(a) < 1 then
-        return -1
-    end if;
-
-    g1 := Gcd(a, f) mod p;
-    if g1 <> 1 then
-        return g1
-    end if;
-
-    b := Powmod(a, ((p^k)^d-1)/2, f, x)  mod p;
-    g2 := Gcd(b-1, f) mod p;
-    if g2 <> 1 and g2 <> f then
-        return g2
-    else
-        return -1
-    end if;
+edf := proc(f::polynom, k::posint, p::posint, q::posint)
+	local l, Mk, r, H, Hp, randdeg, a, d, i, deg, h;
+	l := degree(f);
+	Mk := sum(x^(2^j), j=0..q*k-1);
+	r := l/k;
+	H := {f};
+	while numelems(H) < r do
+		Hp := {};
+		for i to numelems(H) do
+			h := H[i];
+			randdeg := rand(q);
+			deg := randdeg();
+			while deg = 0 do
+				deg := randdeg();
+			end do;
+			aleat := Randpoly(deg, x, alpha) mod p;
+			a := Rem(aleat, h, x) mod p;
+			Mks := Expand(subs(x=alpha, Mk)) mod p;
+			d := Gcd(Mks, h) mod p;
+			if d = 1 or d = h then
+				Hp := Hp union {h};
+			else
+				Hp := Hp union {d, Quo(h, d) mod p};
+			end if;
+		end do;
+		H := Hp;
+	end do;
+	return H;
 end proc:
-
-edf := proc(f::polynom, p::integer, k::integer, d::integer)
-local n, g;
-    n := degree(f);
-    if n <= d then
-        return [f]
-    end if;
-    do
-        g := eds(f, p, k, d);
-        if g <> -1 then
-            break
-        end if;
-    end do;
-
-    return [op(edf(g, p, k, d)), op(edf(Quo(f,g, x) mod p, p, k, d))]
-end proc:
-
-#a := x^4+3*x^3+4*x^2+3;
-#edf(a, 5, 1, 2);
+#stopat(edf);
+#edf(x^2+5*x+4, 1, 7, 2 );
+#unstopat(edf);
